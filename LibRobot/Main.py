@@ -2,20 +2,25 @@ from ValidityCheck import *
 from FileOps import *
 
 
-flag = False
-while flag ==  False:
+n = 1
+while n > 0:
     action = input("\nEnter: \n1) search - To search for a book. \n2) update - To update the database. \n3) view - To view the database. \n4) quit - To quit the program. \n").lower()
    
     if action == "search":
         ISBN = input("\nPlease enter a valid ISBN code: ").upper()
         print(search(ISBN))
-        print("\nThank you for using this program. ")
-        flag = True
+        
+        action_n = input("\nDo you want to perform any other action? \nY/N \n").upper()
+        if action_n == "Y":
+            continue
+        else:
+            print("\nThank you for using this program. ")
+            break
 
     elif action == "update":
         
-        flag2 = False
-        while flag2 == False:
+        m = 1
+        while m > 0:
             book = input("\nEnter the book's name: ")
             author = input("Enter the author's name: ")
             year = input("Enter the year of publication: ")
@@ -24,12 +29,17 @@ while flag ==  False:
             
             if vCheck(ISBN):
                 print(update(book, author, year, publisher, ISBN))
-                print("\nThank you for using this program. ")
-                flag = True
-                flag2 = True
+                break
             
             else:
                 print("\nInvalid ISBN. ")
+
+        action_n = input("\nDo you want to perform any other action? \nY/N \n").upper()
+        if action_n == "Y":
+            continue
+        else:
+            print("\nThank you for using this program. ")
+            break
 
         
     elif action == "view":
@@ -45,12 +55,17 @@ while flag ==  False:
         print("|            BOOK           |        AUTHOR         |  YEAR   |           PUBLISHER            |    ISBN     |")
         for item in dataList:
             print("|", item[0], " "*(24-len(item[0])), "|",item[1], " "*(20-len(item[1])), "|", item[2], " "*(6-len(item[2])), "|", item[3], " "*(29-len(item[3])), "|", item[4], " "*(10-len(item[4])), "|")
-        print("\nThank you for using this program. ")
-        flag = True
+        
+        action_n = input("\nDo you want to perform any other action? \nY/N \n").upper()
+        if action_n == "Y":
+            continue
+        else:
+            print("\nThank you for using this program. ")
+            break
 
     elif action == "quit":
         print("\nThank you for using this program. ")
-        flag = True
+        break
 
     else:
         print("\nInvalid entry. ")
